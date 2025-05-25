@@ -23,7 +23,7 @@ QuietoneAudioProcessor::QuietoneAudioProcessor()
     ,parameters(*this, nullptr, juce::Identifier("Quietone"), {
     std::make_unique<juce::AudioParameterFloat>("volume", "Volume",
                 juce::NormalisableRange<float>(-60.0f, 12.f),
-                0.0f)
+                -10.0f)
         })
 #endif
 {
