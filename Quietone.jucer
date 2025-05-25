@@ -2,8 +2,12 @@
 
 <JUCERPROJECT id="Io90e5" name="Quietone" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              companyName="Mitsuki">
+              companyName="Kontate" companyWebsite="https://x.com/kyono_kont4te"
+              version="1.0.1" pluginFormats="buildStandalone,buildVST3" pluginVST3Category="Tools">
   <MAINGROUP id="EjzKP0" name="Quietone">
+    <GROUP id="{5763AE97-A263-9195-9A06-DBD15857BF1D}" name="Resources">
+      <FILE id="oIQ8fc" name="Quietone.png" compile="0" resource="1" file="../../../Documents/Quietone.png"/>
+    </GROUP>
     <GROUP id="{B99DBE92-1595-2417-C9A6-4745DED4A062}" name="Source">
       <FILE id="owLGOn" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>

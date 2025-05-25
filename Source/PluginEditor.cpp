@@ -23,11 +23,11 @@ QuietoneAudioProcessorEditor::QuietoneAudioProcessorEditor (QuietoneAudioProcess
     volume_slider->setTextValueSuffix(" dB");
     volume_slider->addListener(this);
 
-    volume_slider->setBounds(36, 16, 150, 430);
+    volume_slider->setBounds(36, 16, 125, 430);
 
     volume_slider->setValue(valueTreeState.getRawParameterValue("volume")->load(), juce::dontSendNotification);
 
-    volumeSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(valueTreeState, "volume", *volume_slider)) ;
+    //volumeSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(valueTreeState, "volume", *volume_slider)) ;
 
     setSize (200, 500);
 }
@@ -40,7 +40,13 @@ QuietoneAudioProcessorEditor::~QuietoneAudioProcessorEditor()
 void QuietoneAudioProcessorEditor::paint (juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
+    g.fillAll (juce::Colours::aqua);
+
+    juce::Image background = juce::ImageCache::getFromMemory(BinaryData::Quietone_png, BinaryData::Quietone_pngSize);
+    g.drawImageWithin(background, 0,220,
+        getWidth(),getHeight(),
+        juce::RectanglePlacement::centred | juce::RectanglePlacement::onlyReduceInSize,
+        false);
 }
 
 void QuietoneAudioProcessorEditor::resized()

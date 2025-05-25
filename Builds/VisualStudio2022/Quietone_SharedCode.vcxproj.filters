@@ -2,6 +2,9 @@
 
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Quietone\Resources">
+      <UniqueIdentifier>{940A5B3C-545D-C068-8B59-34034E536B8A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Quietone\Source">
       <UniqueIdentifier>{A6BB009E-0D09-D0B3-914F-8564E823FFF4}</UniqueIdentifier>
     </Filter>
@@ -2842,6 +2845,9 @@
     <ClCompile Include="..\..\..\..\juce-7.0.3-windows\JUCE\modules\juce_gui_extra\juce_gui_extra.mm">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -5583,6 +5589,9 @@
     <ClInclude Include="..\..\..\..\juce-7.0.3-windows\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
+      <Filter>JUCE Library Code</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
@@ -5591,6 +5600,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\Documents\Quietone.png">
+      <Filter>Quietone\Resources</Filter>
+    </None>
     <None Include="..\..\..\..\juce-7.0.3-windows\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt">
       <Filter>JUCE Modules\juce_audio_devices\native\oboe</Filter>
     </None>
