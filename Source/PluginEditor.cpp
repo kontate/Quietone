@@ -27,10 +27,7 @@ QuietoneAudioProcessorEditor::QuietoneAudioProcessorEditor (QuietoneAudioProcess
 
     volume_slider->setValue(valueTreeState.getRawParameterValue("volume")->load(), juce::dontSendNotification);
 
-    //volumeSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
-     //   valueTreeState, "volume", volume_slider);
-
-    
+    volumeSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(valueTreeState, "volume", *volume_slider)) ;
 
     setSize (200, 500);
 }
