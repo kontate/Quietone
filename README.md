@@ -1,6 +1,11 @@
 # Quietone
 ![image](https://github.com/user-attachments/assets/94b4e793-17f4-494a-affc-b4e0be1d6b91)
 
+DAWってめっちゃ音大きいじゃないですか。
+
+けどマスターの音量下げてると書き出しの時に戻すのわすれるじゃないですか。
+
+というわけで作りました。
 
 書き出し時以外のDAWの再生音量を指定することが出来るよ。
 
