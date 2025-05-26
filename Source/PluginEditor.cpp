@@ -43,7 +43,7 @@ void QuietoneAudioProcessorEditor::paint (juce::Graphics& g)
     g.fillAll (juce::Colours::aqua);
 
     juce::Image background = juce::ImageCache::getFromMemory(BinaryData::Quietone_png, BinaryData::Quietone_pngSize);
-    g.drawImageWithin(background, 0,220,
+    g.drawImageWithin(background, 0,0,
         getWidth(),getHeight(),
         juce::RectanglePlacement::centred | juce::RectanglePlacement::onlyReduceInSize,
         false);

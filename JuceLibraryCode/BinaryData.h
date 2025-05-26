@@ -9,7 +9,7 @@
 namespace BinaryData
 {
     extern const char*   Quietone_png;
-    const int            Quietone_pngSize = 35708;
+    const int            Quietone_pngSize = 4290;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 1;
