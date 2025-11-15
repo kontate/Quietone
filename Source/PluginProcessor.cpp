@@ -12,22 +12,26 @@
 //==============================================================================
 QuietoneAudioProcessor::QuietoneAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
-                     #if ! JucePlugin_IsMidiEffect
-                      #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
-                      #endif
-                       .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
-                     #endif
-                       )
-    ,parameters(*this, nullptr, juce::Identifier("Quietone"), {
-    std::make_unique<juce::AudioParameterFloat>("volume", "Volume",
-                juce::NormalisableRange<float>(-60.0f, 12.f),
-                -10.0f)
-        })
+    : AudioProcessor 
+    ( BusesProperties()
+#if ! JucePlugin_IsMidiEffect
+#if ! JucePlugin_IsSynth
+        .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
+#endif
+        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
+#endif
+    )
+    , m_parameters(*this, nullptr, juce::Identifier("Quietone"), 
+    {
+        std::make_unique<juce::AudioParameterFloat>(
+            "volume", "Volume",
+            juce::NormalisableRange<float>(-60.0f, 12.f),
+            -10.0f)
+    })
+	, mp_volume(nullptr)
 #endif
 {
-    volume = parameters.getRawParameterValue("volume");
+    mp_volume = m_parameters.getRawParameterValue("volume");
 }
 
 QuietoneAudioProcessor::~QuietoneAudioProcessor()
@@ -160,9 +164,8 @@ void QuietoneAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
     if (!isNonRealtime()) {
-        DBG(juce::Decibels::decibelsToGain(volume->load()));
-        buffer.applyGain(juce::Decibels::decibelsToGain(volume->load()));
-
+        DBG(juce::Decibels::decibelsToGain(mp_volume->load()));
+        buffer.applyGain(juce::Decibels::decibelsToGain(mp_volume->load()));
     }
 }
 
@@ -174,7 +177,7 @@ bool QuietoneAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* QuietoneAudioProcessor::createEditor()
 {
-    return new QuietoneAudioProcessorEditor (*this,parameters);
+    return new QuietoneAudioProcessorEditor (*this,m_parameters);
 }
 
 //==============================================================================
@@ -183,7 +186,7 @@ void QuietoneAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
-    auto state = parameters.copyState();
+    auto state = m_parameters.copyState();
     std::unique_ptr<juce::XmlElement> xml(state.createXml());
     copyXmlToBinary(*xml, destData);
 }
@@ -194,8 +197,8 @@ void QuietoneAudioProcessor::setStateInformation (const void* data, int sizeInBy
     // whose contents will have been created by the getStateInformation() call.
     std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
     if (xmlState.get() != nullptr)
-        if (xmlState->hasTagName(parameters.state.getType()))
-            parameters.replaceState(juce::ValueTree::fromXml(*xmlState));
+        if (xmlState->hasTagName(m_parameters.state.getType()))
+            m_parameters.replaceState(juce::ValueTree::fromXml(*xmlState));
 }
 
 //==============================================================================
